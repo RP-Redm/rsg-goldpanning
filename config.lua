@@ -11,6 +11,7 @@ Config.RewardItems = {
 Config.SmallRewardAmount = 1 -- one reward
 Config.MediumRewardAmount = 1 -- two rewards
 Config.LargeRewardAmount = 1 -- three rewards
+Config.GoldChance = 80 -- (80 = 20% changce of not finding gold) / (70 = 30% changce of not finding gold).. and so on
 
 Config.WaterTypes = {
     [1] =  {["name"] = "San Luis River",        ["waterhash"] = -1504425495,	["watertype"] = "river"},
