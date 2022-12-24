@@ -1,4 +1,4 @@
-local QRCore = exports['qr-core']:GetCoreObject()
+local RSGCore = exports['rsg-core']:GetCoreObject()
 local panning = false
 local canPan = false
 
@@ -27,10 +27,10 @@ AddEventHandler('rsg-goldpanning:client:StartGoldPan', function()
 			TriggerServerEvent('rsg-goldpanning:server:reward')
 			panning = false
 		else
-			QRCore.Functions.Notify('you need to be by the river to goldpan', 'primary')
+			RSGCore.Functions.Notify('you need to be by the river to goldpan', 'primary')
 		end
 	else
-		QRCore.Functions.Notify('you are already goldpanning!', 'error')
+		RSGCore.Functions.Notify('you are already goldpanning!', 'error')
 	end
 end)
 
