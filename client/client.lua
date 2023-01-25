@@ -10,8 +10,8 @@ AddEventHandler('rsg-goldpanning:client:StartGoldPan', function()
 	if panning == false then
 		for k,v in pairs(Config.WaterTypes) do 
 			if water == Config.WaterTypes[k]["waterhash"]  then
-				canPan = true           
-				break            
+				canPan = true
+				break
 			end
 		end
 		if canPan == true then
@@ -27,10 +27,10 @@ AddEventHandler('rsg-goldpanning:client:StartGoldPan', function()
 			TriggerServerEvent('rsg-goldpanning:server:reward')
 			panning = false
 		else
-			RSGCore.Functions.Notify('you need to be by the river to goldpan', 'primary')
+			RSGCore.Functions.Notify(Lang:t('primary.you_need_the_river_to_goldpan'), 'primary')
 		end
 	else
-		RSGCore.Functions.Notify('you are already goldpanning!', 'error')
+		RSGCore.Functions.Notify(Lang:t('error.you_are_already_goldpanning'), 'error')
 	end
 end)
 
