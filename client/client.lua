@@ -4,34 +4,40 @@ local canPan = false
 
 RegisterNetEvent('rsg-goldpanning:client:StartGoldPan')
 AddEventHandler('rsg-goldpanning:client:StartGoldPan', function()
-	local ped = PlayerPedId()
-	local coords = GetEntityCoords(ped)
-	local water = Citizen.InvokeNative(0x5BA7A68A346A5A91, coords.x, coords.y, coords.z)
-	if panning == false then
-		for k,v in pairs(Config.WaterTypes) do 
-			if water == Config.WaterTypes[k]["waterhash"]  then
-				canPan = true
-				break
-			end
-		end
-		if canPan == true then
-			panning = true
-			AttachPan()
-			CrouchAnim()
-			Wait(6000)
-			ClearPedTasks(ped)
-			GoldShake()
-			local randomwait = math.random(12000,28000)
-			Wait(randomwait)
-			DeletePan(prop_goldpan) 
-			TriggerServerEvent('rsg-goldpanning:server:reward')
-			panning = false
-		else
-			RSGCore.Functions.Notify(Lang:t('primary.you_need_the_river_to_goldpan'), 'primary')
-		end
-	else
-		RSGCore.Functions.Notify(Lang:t('error.you_are_already_goldpanning'), 'error')
-	end
+    local ped = PlayerPedId()
+    local coords = GetEntityCoords(ped)
+    local water = Citizen.InvokeNative(0x5BA7A68A346A5A91, coords.x, coords.y, coords.z)
+    local mounted = IsPedOnMount(ped)
+    if mounted == false then
+        if panning == false then
+            for k,v in pairs(Config.WaterTypes) do 
+                if water == Config.WaterTypes[k]["waterhash"] then
+                    canPan = true
+                    break
+                end
+            end
+            if canPan == true then
+                panning = true
+                AttachPan()
+                CrouchAnim()
+                Wait(6000)
+                ClearPedTasks(ped)
+                GoldShake()
+                local randomwait = math.random(12000,28000)
+                Wait(randomwait)
+                DeletePan(prop_goldpan) 
+                TriggerServerEvent('rsg-goldpanning:server:reward')
+                panning = false
+                canPan = false
+            else
+                RSGCore.Functions.Notify(Lang:t('primary.you_need_the_river_to_goldpan'), 'primary')
+            end
+        else
+            RSGCore.Functions.Notify(Lang:t('error.you_are_already_goldpanning'), 'error')
+        end
+    else
+        RSGCore.Functions.Notify(Lang:t('error.you_are_mounted'), 'error')
+    end
 end)
 
 -- attach gold pan to ped

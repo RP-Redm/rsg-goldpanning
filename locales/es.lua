@@ -1,6 +1,7 @@
 local Translations = {
     error = {
         you_are_already_goldpanning = '¡ya estás buscando oro!',
+        you_are_mounted = 'no puedes hacer esto mientras estás montado!',
     },
     success = {
         var = 'text goes here',

@@ -13,11 +13,11 @@ shared_scripts {
 }
 
 client_scripts {
-	'client/client.lua'
+    'client/client.lua'
 }
 
 server_scripts {
-	'server/server.lua'
+    'server/server.lua'
 }
 
 dependency 'rsg-core'
