@@ -1,6 +1,27 @@
 local RSGCore = exports['rsg-core']:GetCoreObject()
 local panning = false
 local canPan = false
+-------------------
+local Zones = {}
+local hotspot = false
+-------------------
+-- create hotspot zones
+CreateThread(function() 
+    for k=1, #Config.HotspotZones do
+        Zones[k] = PolyZone:Create(Config.HotspotZones[k].zones, {
+            minZ = Config.HotspotZones[k].minz,
+            maxZ = Config.HotspotZones[k].maxz,
+            debugPoly = false,
+        })
+        Zones[k]:onPlayerInOut(function(isPointInside)
+            if isPointInside then
+                hotspot = true
+            else
+                hotspot = false
+            end
+        end)
+    end
+end)
 
 RegisterNetEvent('rsg-goldpanning:client:StartGoldPan')
 AddEventHandler('rsg-goldpanning:client:StartGoldPan', function()
@@ -25,8 +46,12 @@ AddEventHandler('rsg-goldpanning:client:StartGoldPan', function()
                 GoldShake()
                 local randomwait = math.random(12000,28000)
                 Wait(randomwait)
-                DeletePan(prop_goldpan) 
-                TriggerServerEvent('rsg-goldpanning:server:reward')
+                DeletePan(prop_goldpan)
+                if hotspot == true then
+                    TriggerServerEvent('rsg-goldpanning:server:hotspotreward')
+                else
+                    TriggerServerEvent('rsg-goldpanning:server:reward')
+                end
                 panning = false
                 canPan = false
             else

@@ -8,10 +8,40 @@ Config.RewardItems = {
 }
 
 -- set the amount of nuggets to give
-Config.SmallRewardAmount = 1 -- one reward
-Config.MediumRewardAmount = 1 -- two rewards
-Config.LargeRewardAmount = 1 -- three rewards
-Config.GoldChance = 80 -- (80 = 20% changce of not finding gold) / (70 = 30% changce of not finding gold).. and so on
+Config.SmallRewardAmount  = 1
+Config.MediumRewardAmount = 1
+Config.LargeRewardAmount  = 1
+Config.GoldChance = 30 -- (30 = 70% changce of not finding gold)
+
+-- set the amount of nuggets to give in hotspot
+Config.HSSmallRewardAmount   = 3
+Config.HSMediumRewardAmount  = 3
+Config.HSHSLargeRewardAmount = 3
+Config.HSGoldChance = 70 -- (70 = 30% changce of not finding gold
+
+-- gold hotspot zones
+Config.HotspotZones = { 
+    [1] = {
+        zones = { 
+            vector2(-2668.4643554688, -331.17501831055),
+            vector2(-2676.6958007813, -345.48364257813),
+            vector2(-2692.796875, -341.9401550293),
+            vector2(-2691.8974609375, -334.74746704102)
+        },
+        minZ = 142.12985229492,
+        maxZ = 143.64106750488
+    },
+    [2] = {
+        zones = { 
+            vector2(1542.0013427734, -7162.8862304688),
+            vector2(1547.5384521484, -7171.96875),
+            vector2(1556.6940917969, -7168.587890625),
+            vector2(1550.9084472656, -7158.328125)
+        },
+        minZ = 62.612213134766,
+        maxZ = 63.129043579102
+    },
+}
 
 Config.WaterTypes = {
     [1] =  {["name"] = "San Luis River",        ["waterhash"] = -1504425495,    ["watertype"] = "river"},
